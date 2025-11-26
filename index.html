@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Kiss Cam — Wedding v10 (Landscape)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <canvas id="cameraCanvas"></canvas>
+  <video id="video" autoplay playsinline muted style="display:none;"></video>
+
+  <div id="kisscamText">KISS CAM</div>
+
+  <div id="heartWrapper" aria-hidden="true">
+    <svg id="heartOutline" viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet">
+      <path d="M50 82 L45 78 C20 58 5 40 5 25 C5 12 17 5 30 12 C38 17 43 28 50 36 C57 28 62 17 70 12 C83 5 95 12 95 25 C95 40 80 58 55 78 L50 82 Z"
+        fill="none" stroke="#fff" stroke-width="4"/>
+    </svg>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="controls">
+    <button id="searchBtn" class="left">Searching</button>
+    <button id="kissBtn" class="right">Kiss!</button>
+  </div>
+
+  <div id="particles"></div>
+
+  <!-- small hidden control to flip rotation if needed -->
+  <div id="devControls">
+    <label>Rotate: </label>
+    <select id="rotationSelect" aria-label="rotation">
+      <option value="-90">R2/T2 (-90°)</option>
+      <option value="90">R2/T1 (90°)</option>
+      <option value="0">No rotate (0°)</option>
+    </select>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
