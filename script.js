@@ -61,33 +61,32 @@ async function startCamera(){
 function drawLoop(){
   requestAnimationFrame(drawLoop);
   if(video.readyState < 2) return;
+
   const DPR = window.devicePixelRatio || 1;
   const cw = canvas.width / DPR;
   const ch = canvas.height / DPR;
+
   ctx.setTransform(1,0,0,1,0,0);
   ctx.clearRect(0,0,canvas.width, canvas.height);
 
-  // we'll work in CSS pixels for placement
   ctx.save();
-  // scale for DPR
   ctx.scale(DPR, DPR);
 
-  // move origin to center of canvas
+  // Move to center
   ctx.translate(cw/2, ch/2);
 
-  // apply rotation (degrees)
-  const rad = rotationDeg * Math.PI / 180;
-  ctx.rotate(rad);
+  // ROTATE the video feed by 90 degrees CLOCKWISE
+  ctx.rotate(90 * Math.PI / 180);
 
-  // apply scale (centered)
+  // Apply zoom (centered)
   ctx.scale(currentScale, currentScale);
 
-  // draw video centered
   const vw = video.videoWidth;
   const vh = video.videoHeight;
+
   if(vw && vh){
-    // draw at natural pixel size but centered
-    ctx.drawImage(video, -vw/2, -vh/2, vw, vh);
+    // After rotation, width/height swap
+    ctx.drawImage(video, -vh/2, -vw/2, vh, vw);
   }
 
   ctx.restore();
