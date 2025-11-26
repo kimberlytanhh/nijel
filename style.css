@@ -31,6 +31,15 @@ body{font-family:Inter,system-ui,Arial;color:#fff;overscroll-behavior:none}
 #devControls{position:absolute;top:2vh;right:2vw;z-index:80;opacity:0.001}
 #devControls select{font-size:12px}
 
+#overlayCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:40;
+}
+
 /* === REC Header === */
 #recHeader {
   position: absolute;
