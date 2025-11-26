@@ -151,6 +151,7 @@ document.addEventListener("touchend", () => {
 function setSearching() {
   particles.innerHTML = "";
   message.textContent = "Who shall be the lucky couple?";
+  document.getElementById("maskOverlay").style.display="block";
 }
 
 function doKiss() {
@@ -165,6 +166,7 @@ function doKiss() {
   currentScale = pulse;
 
   setTimeout(() => (currentScale = orig), 800);
+  document.getElementById("maskOverlay").style.display="block";
 }
 
 
