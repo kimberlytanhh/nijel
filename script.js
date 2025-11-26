@@ -35,9 +35,14 @@ resizeCanvasHighDPI();
 async function startCamera(){
   try{
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { exact: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } },
-      audio: false
-    });
+  video: {
+    facingMode: { exact: 'environment' },
+    width: { ideal: 1920 },
+    height: { ideal: 1080 },
+    aspectRatio: { ideal: 16/9 }
+  },
+  audio: false
+});
     video.srcObject = stream;
     await video.play();
   }catch(err){
