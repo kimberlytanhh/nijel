@@ -154,18 +154,68 @@ function setSearching() {
 }
 
 function doKiss() {
-  particles.innerHTML = '';
-  message.className = 'bigText';
+  particles.innerHTML = "";
+  message.className = "bigText";
   message.textContent = "KISS!";
-  burstHearts(window.innerWidth/2, window.innerHeight/2, 64, true);
-  const orig=currentScale;
-  const pulse = Math.min(MAX_SCALE, orig * 1.12);
+
+  burstHearts(window.innerWidth / 2, window.innerHeight / 2, 60, true);
+
+  const orig = currentScale;
+  const pulse = Math.min(4, orig * 1.1);
   currentScale = pulse;
-  setTimeout(()=> currentScale = orig, 900);
+
+  setTimeout(() => (currentScale = orig), 800);
 }
+
 
 searchBtn.addEventListener("click", setSearching);
 kissBtn.addEventListener("click", doKiss);
+
+// -----------------------
+// HEART PARTICLES
+// -----------------------
+function createHeart(x, y, big = false) {
+  const el = document.createElement("div");
+  el.className = "heartParticle";
+
+  const size = big ? 80 + Math.random() * 90 : 25 + Math.random() * 25;
+  el.style.width = size + "px";
+  el.style.height = size + "px";
+
+  el.style.left = x + "px";
+  el.style.top = y + "px";
+
+  el.innerHTML = `
+    <svg viewBox="0 0 32 29" width="100%" height="100%">
+      <path d="M23.6 2.6c-2.4 0-4.6 1.3-5.6 3.3-1-2-3.2-3.3-5.6-3.3
+      C5.4 2.6 2 6 2 10.1c0 6.1 10.6 12.1 14 16.9
+      3.4-4.8 14-10.8 14-16.9 0-4.1-3.4-7.5-6.4-7.5z"
+      fill="#ff2a2a"/>
+    </svg>`;
+
+  particles.appendChild(el);
+
+  requestAnimationFrame(() => {
+    el.style.transition =
+      "transform 1200ms cubic-bezier(.2,.9,.2,1), opacity 1500ms linear";
+    const dx = (Math.random() - 0.5) * 400;
+    const dy = -150 - Math.random() * 500;
+    el.style.transform = `translate(${dx}px, ${dy}px) scale(${1 + Math.random()}) rotate(${Math.random() * 360}deg)`;
+    el.style.opacity = "1";
+  });
+
+  setTimeout(() => el.remove(), 1800);
+}
+
+function burstHearts(cx, cy, count = 40, big = false) {
+  for (let i = 0; i < count; i++) {
+    createHeart(
+      cx + (Math.random() - 0.5) * 200,
+      cy + (Math.random() - 0.5) * 200,
+      big
+    );
+  }
+}
 
 // Run
 startCamera();
