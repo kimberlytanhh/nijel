@@ -227,13 +227,16 @@ function burstHearts(cx,cy,count=40,big=false){
 ********************************/
 function setSearching(){
     particles.innerHTML = "";
-    octx.clearRect(0,0,overlayCanvas.width,overlayCanvas.height);
     message.textContent = "Who shall be the lucky couple?";
+
+    // Show the red mask (same as Kiss, but no hearts bursting)
+    drawRedMask();
 }
+
 
 function doKiss(){
     particles.innerHTML = "";
-    message.textContent = "KISS!";
+    message.textContent = "KISS NOW!";
 
     burstHearts(window.innerWidth/2, window.innerHeight/2, 60, true);
 
