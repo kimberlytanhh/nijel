@@ -11,7 +11,7 @@ const message = document.getElementById('message');
 const particles = document.getElementById('particles');
 const rotationSelect = document.getElementById('rotationSelect');
 
-let rotationDeg = parseInt(rotationSelect.value || "-90", 10); // default -90 for R2,T2
+let rotationDeg = parseInt(rotationSelect.value || "90", 10); // default -90 for R2,T2
 let currentScale = 1;
 let lastScale = 1;
 let startDist = null;
