@@ -31,6 +31,43 @@ body{font-family:Inter,system-ui,Arial;color:#fff;overscroll-behavior:none}
 #devControls{position:absolute;top:2vh;right:2vw;z-index:80;opacity:0.001}
 #devControls select{font-size:12px}
 
+/* === REC Header === */
+#recHeader {
+  position: absolute;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.2vh;
+  z-index: 200;
+}
+
+.rec-dot {
+  width: 3vh;
+  height: 3vh;
+  background: red;
+  border-radius: 50%;
+}
+
+.rec-text {
+  font-size: 5vh;
+  font-weight: 800;
+  color: white;
+}
+
+#maskOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 120;
+  background: #750014;
+  mask: url(#heartMask);
+  -webkit-mask: url(#heartMask);
+  mask-size: 100%;
+  -webkit-mask-size: 100%;
+}
+
 /* Force landscape mode even if iPhone thinks it's portrait */
 @media screen and (orientation:portrait) {
   body {
