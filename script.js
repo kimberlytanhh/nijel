@@ -19,6 +19,29 @@ let pointerMap = new Map();
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 
+// Fix stretched canvas in iPhone PWA by forcing correct landscape dimensions
+function resizeCanvas(){
+  const DPR = window.devicePixelRatio || 1;
+
+  // Read the raw viewport size
+  let w = window.innerWidth;
+  let h = window.innerHeight;
+
+  // iPhone PWAs sometimes report reversed width/height
+  // Force landscape by swapping if needed
+  if(h > w){
+    [w, h] = [h, w];
+  }
+
+  // Apply CSS size
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
+
+  // Apply actual pixel size
+  canvas.width = w * DPR;
+  canvas.height = h * DPR;
+}
+
 // high-DPI canvas sizing
 function resizeCanvasHighDPI(){
   const DPR = window.devicePixelRatio || 1;
@@ -28,8 +51,8 @@ function resizeCanvasHighDPI(){
   canvas.height = Math.round(window.innerHeight * DPR);
   // we'll draw with context transforms per DPR inside drawLoop
 }
-window.addEventListener('resize', resizeCanvasHighDPI);
-resizeCanvasHighDPI();
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
 // camera start with 1080p hint
 async function startCamera(){
