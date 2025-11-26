@@ -107,10 +107,35 @@ function drawLoop(){
   const vw = video.videoWidth;
   const vh = video.videoHeight;
 
-  if(vw && vh){
-    // After rotation, width/height swap
-    ctx.drawImage(video, -vh/2, -vw/2, vh, vw);
-  }
+  if (vw && vh) {
+    // Video is rotated -90°, so swap width/height
+    const vW = vh;
+    const vH = vw;
+
+    const canvasAspect = cw / ch;
+    const videoAspect = vW / vH;
+
+    let drawW, drawH;
+
+    if (videoAspect > canvasAspect) {
+        // video wider relative to canvas
+        drawW = cw;
+        drawH = cw / videoAspect;
+    } else {
+        // video taller relative to canvas
+        drawH = ch;
+        drawW = ch * videoAspect;
+    }
+
+    // center the video
+    ctx.drawImage(
+        video,
+        -drawW / 2,
+        -drawH / 2,
+        drawW,
+        drawH
+    );
+}
 
   ctx.restore();
 }
