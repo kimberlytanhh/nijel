@@ -1,89 +1,157 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+    height:100%;
+    background:#000;
+    touch-action:none;
+    overflow:hidden;
+}
+body{
+    font-family:Inter,Arial;
+    color:#fff;
+}
 
-/* v10 Landscape style */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;touch-action:none;background:#000}
-body{font-family:Inter,system-ui,Arial;color:#fff;overscroll-behavior:none}
-#app{position:relative;width:100%;height:100vh;overflow:hidden}
+/* fullscreen wrapper */
+#app{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
 
-/* canvas fills screen */
-#cameraCanvas{position:absolute;inset:0;width:100%;height:100%;background:#000;z-index:10;display:block}
+/***************************
+    REC HEADER
+****************************/
+#recHeader{
+    position:absolute;
+    top:2vh;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:1.2vh;
+    font-size:5vh;
+    font-weight:900;
+    z-index:90;
+    pointer-events:none;
+}
+.recDot{
+    color:#ff2a2a;
+    font-size:4.5vh;
+}
+.recText{
+    color:white;
+    font-weight:900;
+}
 
-/* banner */
-#kisscamText{position:absolute;top:2vh;left:50%;transform:translateX(-50%);font-size:6vh;font-weight:900;color:red;text-shadow:0 6px 30px rgba(0,0,0,0.6);z-index:60;pointer-events:none}
+/***************************
+    MESSAGE
+****************************/
+#message{
+    position:absolute;
+    top:10vh;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:4vh;
+    z-index:90;
+    text-align:center;
+    pointer-events:none;
+}
 
-/* heart centered */
-#heartWrapper{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:170vh;height:80vh;z-index:50;pointer-events:none}
-#heartOutline{width:100%;height:100%}
+/***************************
+    CAMERA CANVAS
+****************************/
+#cameraCanvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:black;
+    z-index:10;
+}
 
-/* message under banner */
-#message{position:absolute;top:12vh;left:50%;transform:translateX(-50%);font-size:4vh;text-align:center;z-index:60;pointer-events:none}
+/***************************
+    HEART OUTLINE
+****************************/
+#heartWrapper{
+    position:absolute;
+    left:50%;
+    top:63%;          /* moved higher so the dip is not too low */
+    transform:translate(-50%,-50%);
+    width:110vh;
+    height:80vh;
+    z-index:50;
+    pointer-events:none;
+}
+#heartOutline{
+    width:100%;
+    height:100%;
+}
 
-/* buttons bottom-left and bottom-right */
-#controls{position:absolute;bottom:4vh;left:0;right:0;display:flex;justify-content:space-between;padding:0 4vw;z-index:70}
-#controls button{padding:12px 22px;font-size:3.6vh;border-radius:12px;border:none;background:rgba(255,255,255,0.08);color:#fff;min-width:36vw;max-width:46vw}
-#controls button.right{background:#c1121f}
-
-/* particle hearts */
-#particles{position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;z-index:100}
-.heartParticle{position:absolute;opacity:0;will-change:transform,opacity;pointer-events:none}
-
-/* developer control (hidden small) */
-#devControls{position:absolute;top:2vh;right:2vw;z-index:80;opacity:0.001}
-#devControls select{font-size:12px}
-
+/***************************
+    RED MASK OVERLAY
+****************************/
 #overlayCanvas{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:40;
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:40;
+    pointer-events:none;
 }
 
-/* === REC Header === */
-#recHeader {
-  position: absolute;
-  top: 2vh;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 1.2vh;
-  z-index: 200;
+/***************************
+    PARTICLE HEARTS
+****************************/
+#particles{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:100;
+    pointer-events:none;
+}
+.heartParticle{
+    position:absolute;
+    opacity:0;
+    will-change:transform,opacity;
 }
 
-.rec-dot {
-  width: 3vh;
-  height: 3vh;
-  background: red;
-  border-radius: 50%;
+/***************************
+    BUTTONS
+****************************/
+#controls{
+    position:absolute;
+    bottom:4vh;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:space-between;
+    padding:0 5vw;
+    z-index:95;
+}
+#controls button{
+    padding:14px 24px;
+    font-size:3.6vh;
+    border:none;
+    border-radius:12px;
+    min-width:36vw;
+    max-width:44vw;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+}
+#controls button.right{
+    background:#c1121f;
 }
 
-.rec-text {
-  font-size: 5vh;
-  font-weight: 800;
-  color: white;
-}
-
-#maskOverlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 120;
-  background: #750014;
-  mask: url(#heartMask);
-  -webkit-mask: url(#heartMask);
-  mask-size: 100%;
-  -webkit-mask-size: 100%;
-}
-
-/* Force landscape mode even if iPhone thinks it's portrait */
-@media screen and (orientation:portrait) {
-  body {
-    transform: rotate(90deg);
-    transform-origin: center center;
-    width: 100vh;
-    height: 100vw;
-    overflow: hidden;
-  }
+/***************************
+    PORTRAIT FORCE LANDSCAPE
+****************************/
+@media screen and (orientation:portrait){
+    body{
+        transform:rotate(90deg);
+        transform-origin:center center;
+        width:100vh;
+        height:100vw;
+    }
 }
