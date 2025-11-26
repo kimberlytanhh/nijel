@@ -99,7 +99,7 @@ function drawLoop(){
   ctx.translate(cw/2, ch/2);
 
   // ROTATE the video feed by 90 degrees CLOCKWISE
-  ctx.rotate(90 * Math.PI / 180);
+  ctx.rotate(-90 * Math.PI / 180);
 
   // Apply zoom (centered)
   ctx.scale(currentScale, currentScale);
