@@ -78,7 +78,7 @@ function drawLoop() {
   // -----------------------
   // FIX: 90° ANTICLOCKWISE
   // -----------------------
-  ctx.rotate(90 * Math.PI / 180);
+  ctx.rotate(0 * Math.PI / 180);
 
   // Zoom scale (from pinch gesture)
   ctx.scale(currentScale, currentScale);
