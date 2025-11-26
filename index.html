@@ -17,6 +17,24 @@
     <!-- Message -->
     <div id="message">Who shall be the lucky couple?</div>
 
+    <div id="kissOverlay">
+    <svg viewBox="0 0 100 100">
+        <defs>
+            <mask id="heartMask">
+                <!-- black background = hidden -->
+                <rect width="100" height="100" fill="white" />
+
+                <!-- heart = transparent hole -->
+                <path d="M50 80 L15 40 A20 20 0 0 1 50 25 A20 20 0 0 1 85 40 Z"
+                      fill="black"/>
+            </mask>
+        </defs>
+
+        <!-- red panel using the mask -->
+        <rect width="100" height="100" fill="#750014" mask="url(#heartMask)" />
+    </svg>
+</div>
+
     <!-- Camera -->
     <canvas id="cameraCanvas"></canvas>
 
