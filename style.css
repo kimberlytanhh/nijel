@@ -30,3 +30,14 @@ body{font-family:Inter,system-ui,Arial;color:#fff;overscroll-behavior:none}
 /* developer control (hidden small) */
 #devControls{position:absolute;top:2vh;right:2vw;z-index:80;opacity:0.001}
 #devControls select{font-size:12px}
+
+/* Force landscape mode even if iPhone thinks it's portrait */
+@media screen and (orientation:portrait) {
+  body {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    width: 100vh;
+    height: 100vw;
+    overflow: hidden;
+  }
+}
