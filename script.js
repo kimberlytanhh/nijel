@@ -154,7 +154,14 @@ function setSearching() {
 }
 
 function doKiss() {
+  particles.innerHTML = '';
+  message.className = 'bigText';
   message.textContent = "KISS!";
+  burstHearts(window.innerWidth/2, window.innerHeight/2, 64, true);
+  const orig=currentScale;
+  const pulse = Math.min(MAX_SCALE, orig * 1.12);
+  currentScale = pulse;
+  setTimeout(()=> currentScale = orig, 900);
 }
 
 searchBtn.addEventListener("click", setSearching);
